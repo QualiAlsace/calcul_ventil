@@ -22,7 +22,18 @@ def main():
     st.header("2. Définition des caractéristiques de la pièce")
     surface = st.number_input("Surface de la pièce (m²)", min_value=0.0, step=1.0)
     hauteur = st.number_input("Hauteur sous plafond (m)", min_value=0.0, step=0.1)
-    renouvellement_horaire = st.selectbox("Renouvellement d'air (vol/h)", [6, 8, 10, 12, 15, 20, 25, 30, 35, 40])
+    
+    type_local = st.selectbox("Type de local", [
+        ("Bureaux, salles de réunion (4-8 vol/h)", 6),
+        ("Commerces, boutiques (6-10 vol/h)", 8),
+        ("Restaurants - salle (8-12 vol/h)", 10),
+        ("Cuisines professionnelles (20-40 vol/h)", 25),
+        ("Salles de sport (10-20 vol/h)", 15),
+        ("Laboratoires, salles propres (15-30 vol/h)", 20),
+        ("Locaux industriels, entrepôts (5-20 vol/h)", 10),
+        ("Sanitaires publics (6-15 vol/h)", 8)
+    ], format_func=lambda x: x[0])
+    renouvellement_horaire = type_local[1]
     
     U = st.selectbox("Niveau d'isolation du bâtiment", [
         ("Très bien isolé (RT 2020)", 0.3),
