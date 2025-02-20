@@ -22,14 +22,14 @@ def main():
     st.header("2. Définition des caractéristiques de la pièce")
     surface = st.number_input("Surface de la pièce (m²)", min_value=0.0, step=1.0)
     hauteur = st.number_input("Hauteur sous plafond (m)", min_value=0.0, step=0.1)
-    renouvellement_horaire = st.number_input("Renouvellement d'air (vol/h)", min_value=1, max_value=50, value=10, step=1)
+    renouvellement_horaire = st.selectbox("Renouvellement d'air (vol/h)", [6, 8, 10, 12, 15, 20, 25, 30, 35, 40])
     
-    U = st.selectbox("Niveau d'isolation du bâtiment", {
-        "Très bien isolé (RT 2020)": 0.3,
-        "Isolation standard (RT 2012)": 0.8,
-        "Mal isolé (ancien bâtiment)": 2.0,
-        "Pas isolé (tôle, hangar)": 4.0
-    })
+    U = st.selectbox("Niveau d'isolation du bâtiment", [
+        ("Très bien isolé (RT 2020)", 0.3),
+        ("Isolation standard (RT 2012)", 0.8),
+        ("Mal isolé (ancien bâtiment)", 2.0),
+        ("Pas isolé (tôle, hangar)", 4.0)
+    ], format_func=lambda x: x[0])[1]
     
     debit_volume = calculer_debit_volume(surface, hauteur, renouvellement_horaire)
     
