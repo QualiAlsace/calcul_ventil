@@ -1,7 +1,7 @@
 import streamlit as st
 
 def calculer_puissance_chauffe(debit_air, delta_T):
-    return 0.34 * debit_air * delta_T
+    return 0.34 * debit_air * delta_T/1000
 
 def calculer_debit_insufflation(debit_extraction, ratio_compensation=0.75):
     return debit_extraction * ratio_compensation
